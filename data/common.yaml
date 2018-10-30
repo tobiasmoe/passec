@@ -1,1 +1,3 @@
 ---
+passec::registry_values: ['PwnedPasswordsDLL-API','rassfm','scecli']
+passec::domain_name: 'borg.trek'
