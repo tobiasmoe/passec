@@ -5,10 +5,13 @@
 # @example
 #   include passec
 class passec (
+  Array $registry_values_api,
   Array $registry_values,
   String $domain_name,
+  Boolean $reboot,
+  Boolean $restartadds,
+  Boolean $api,
 ) {
-
   contain passec::install
   contain passec::config
 
