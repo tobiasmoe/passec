@@ -11,7 +11,7 @@ describe 'passec::config' do
           'passec::domain_name'     	=> 'borg.trek',
           'passec::reboot'          	=> 'true',
           'passec::restartadds'     	=> 'true',
-          'passec::api'		    	=> 'false',
+          'passec::api'		    	=> 'true',
         }
       end
 
@@ -32,6 +32,7 @@ describe 'passec::config' do
       }
       it { is_expected.to contain_exec('Restart-ADDS').that_subscribes_to('Exec[GPO]') }
       it { is_expected.to contain_reboot('last').that_subscribes_to('Exec[Restart-ADDS]') }
+      it { is_expected.to have_resource_count(4) }
     end
   end
 end
