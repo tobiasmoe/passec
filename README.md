@@ -1,10 +1,6 @@
 
 # passec
 
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
-
-The README template below provides a starting point with details about what information to include in your README.
-
 #### Table of Contents
 
 1. [Description](#description)
@@ -45,26 +41,26 @@ This module is depends on the following modules
 If you want to install the module with basic setup,
 ```
 class { '::passec':
-   domain_name => 'borg.trek',
-   }
+   domain_name => 'YourDomainName',
+}
 ```
 
 By using the basic setup the module will install using the API version of Jacksons code and it will restart your Active Directory and the PC(s). 
 
 ## Usage
 
-# Install and Configure with the basic setup
+#### Install and Configure with the basic setup
 ```
 class { '::passec':
-   domain_name => 'borg.trek',
+   domain_name => 'YourDomainName',
 }
 ```
 
-# Don't want to restart the PC or Active Directory right now?
+#### Don't want to restart the PC or Active Directory right now?
 
 ```
 class { '::passec': 
-   domain_name => 'borg.trek'
+   domain_name => 'YourDomainName'
    reboot      => false,
    restartadds => false,
 }
@@ -72,36 +68,36 @@ class { '::passec':
 
 Please keep in mind that you need to eventually restart your PC and Active Directory in order for the module to work. 
 
-# If you wan't to download it locally instead of using the API version
+### If you wan't to download it locally instead of using the API version
 ```
 class { '::passec':
-   domain_name => 'borg.trek',
+   domain_name => 'YourDomainName',
    api         => false,
 }
 ```
 
-# If you want to add additional values to the registry key for the API version
+### If you want to add additional values to the registry key for the API version
 ```
 class { '::passec':
    registry_values_api  => ['PwnedPasswordsDLL-API', 'rassfm', 'scecli'],
-   domain_name          => 'borg.trek',
+   domain_name          => 'YourDomainName',
 }
 ```
 Please keep in mind that you need to always include the "PwnedPasswordsDLL-API" to the registry_values_api for the module to work.
 
-# If you want to add additional values to the registry key for the local version
+### If you want to add additional values to the registry key for the local version
 ```
 class { '::passec':
    registry_values => ['PwnedPasswordsDLL', 'rassfm', 'scecli'],
-   domain_name     => 'borg.trek',
+   domain_name     => 'YourDomainName',
 }
 ```
 
-# Most advanced use of the module
+### Most advanced use of the module
 ```
 class { '::passec':
    registry_values => ['PwnedPasswordsDLL', 'rassfm', 'scecli'],
-   domain_name     => 'borg.trek',
+   domain_name     => 'YourDomainName',
    reboot          => false,
    restartadds     => false,
    api             => false,
