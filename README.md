@@ -18,35 +18,95 @@ The README template below provides a starting point with details about what info
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
+This module installs and configures Jacksons Van Dyke's Active Directory Pwned Password integration. You can read more about him and the installation in his blogpost at https://jacksonvd.com/checking-for-breached-passwords-ad-using-k-anonymity/ .
 
-This should be a fairly short description helps the user decide if your module is what they want.
+Pwned Passwords are about 500 million real world passwords that have been previously breached in data breaches. This makes these passwords unsuitable and insecure for use. This module is meant to be used against and Active Directory in order to secure users by letting them know if their password has been breached. It is also worth mentioning that the Pwned Password integration only catches Password Change Requests in your Active Directory, meaning it will NOT go through the AD's current user passwords. 
 
 ## Setup
 
 ### What passec affects **OPTIONAL**
+ * Adds a value to following registry key "HKLM\System\CurrentControlSet\Control\LSA\Notification Packages"
+ * Ensures that "Password must meet complexity requirements" is enabled on your domain
+ * Installs the dll to your C:\windows\system32
+ * Installs the database containing all breached passwords to your C:\ (this is optional) 
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
-
-If there's more that they should know about, though, this is the place to mention:
-
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
+Please be aware that the module overwrites the registry value for HKLM\System\CurrentControlSet\Control\LSA\Notification Packages. If you wan't to keep what you already have then you have to add it to the variable "registry_values_api" if you're using the API or "registry_values" if you want to download the database locally. 
 
 ### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+This module is depends on the following modules
+ * puppetlabs/powershell
+ * puppet/download_file
+ * puppetlabs/registry
+ * puppetlabs/reboot
+ * puppetlabs/archive
 
 ### Beginning with passec
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
+If you want to install the module with basic setup,
+```
+class { '::passec':
+   domain_name => 'borg.trek',
+   }
+```
+
+By using the basic setup the module will install using the API version of Jacksons code and it will restart your Active Directory and the PC(s). 
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
+# Install and Configure with the basic setup
+```
+class { '::passec':
+   domain_name => 'borg.trek',
+}
+```
+
+# Don't want to restart the PC or Active Directory right now?
+
+```
+class { '::passec': 
+   domain_name => 'borg.trek'
+   reboot      => false,
+   restartadds => false,
+}
+```
+
+Please keep in mind that you need to eventually restart your PC and Active Directory in order for the module to work. 
+
+# If you wan't to download it locally instead of using the API version
+```
+class { '::passec':
+   domain_name => 'borg.trek',
+   api         => false,
+}
+```
+
+# If you want to add additional values to the registry key for the API version
+```
+class { '::passec':
+   registry_values_api  => ['PwnedPasswordsDLL-API', 'rassfm', 'scecli'],
+   domain_name          => 'borg.trek',
+}
+```
+Please keep in mind that you need to always include the "PwnedPasswordsDLL-API" to the registry_values_api for the module to work.
+
+# If you want to add additional values to the registry key for the local version
+```
+class { '::passec':
+   registry_values => ['PwnedPasswordsDLL', 'rassfm', 'scecli'],
+   domain_name     => 'borg.trek',
+}
+```
+
+# Most advanced use of the module
+```
+class { '::passec':
+   registry_values => ['PwnedPasswordsDLL', 'rassfm', 'scecli'],
+   domain_name     => 'borg.trek',
+   reboot          => false,
+   restartadds     => false,
+   api             => false,
+}
+```
 
 ## Reference
 
@@ -77,7 +137,8 @@ Default: 'medium-loud'.
 
 ## Limitations
 
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
+* You need to specify the domain_name
+* If you choose to add registry_values then you need to make sure that you're adding the "PwnedPasswordDLL" if you're using the local version, or "PwnedPasswordDLL-API" if you're using the API version.
 
 ## Development
 
