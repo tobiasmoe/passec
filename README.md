@@ -105,35 +105,51 @@ class { '::passec':
 ```
 ## Reference
 
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
+### Classes
 
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
+#### Public Classes
 
-For each element (class, defined type, function, and so on), list:
+* passec: Main class which includes the other classes
 
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
+#### Private Classes
 
-For example:
+* passec::install: Installs the necessary files
+* passec::config: Configures the module
 
-```
-### `pet::cat`
+### Parameters
 
-#### Parameters
+**api**
+Choose whether to use API to query password or download the breached database locally. 
+Defaults to true
 
-##### `meow`
+**restartadds**
+Choose whether to restart the Active Directory Domain Service.
+Defaults to true
 
-Enables vocalization in your cat. Valid options: 'string'.
+**reboot**
+Choose whether to restart the PC.
+Defaults to true
 
-Default: 'medium-loud'.
-```
+**domain_name**
+Specify the domain name to ensure that "Passwords must mee complexity requirements" is enabled.
+Needs to be string
+
+**registry_values**
+Specifies the values that needs to be in the "HKLM\System\CurrentControlSet\Control\LSA\Notification Packages" for the local database installation.
+Need to always include "PwnedPasswordsDLL"
+Defaults to ['PwnedPasswordsDLL','rassfm','scecli']
+
+**registry_values_api**
+Specifies the values that needs to be in the "HKLM\System\CurrentControlSet\Control\LSA\Notification Packages" for the API installation.
+Needs to always include "PwnedPasswordsDLL-API"
+Defaults to ['PwnedPasswordsDLL-API','rassfm','scecli']
+
 
 ## Limitations
 
 * You need to specify the domain_name
 * If you choose to add registry_values then you need to make sure that you're adding the "PwnedPasswordDLL" if you're using the local version, or "PwnedPasswordDLL-API" if you're using the API version.
+* This module only works on Windows
 
 ## Development
 
