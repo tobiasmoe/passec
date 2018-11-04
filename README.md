@@ -9,8 +9,9 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with passec](#beginning-with-passec)
 3. [Usage - Configuration options and additional functionality](#usage)
-4. [Limitations - OS compatibility, etc.](#limitations)
-5. [Development - Guide for contributing to the module](#development)
+4. [Reference](#Reference)
+5. [Limitations - OS compatibility, etc.](#limitations)
+6. [Development - Guide for contributing to the module](#development)
 
 ## Description
 
