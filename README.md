@@ -118,31 +118,52 @@ class { '::passec':
 
 ### Parameters
 
+
 **api**
+
 Choose whether to use API to query password or download the breached database locally. 
+
 Defaults to true
+
 
 **restartadds**
+
 Choose whether to restart the Active Directory Domain Service.
+
 Defaults to true
+
 
 **reboot**
+
 Choose whether to restart the PC.
+
 Defaults to true
 
+
 **domain_name**
+
 Specify the domain name to ensure that "Passwords must mee complexity requirements" is enabled.
+
 Needs to be string
 
+
 **registry_values**
+
 Specifies the values that needs to be in the "HKLM\System\CurrentControlSet\Control\LSA\Notification Packages" for the local database installation.
+
 Need to always include "PwnedPasswordsDLL"
+
 Defaults to ['PwnedPasswordsDLL','rassfm','scecli']
 
+
 **registry_values_api**
+
 Specifies the values that needs to be in the "HKLM\System\CurrentControlSet\Control\LSA\Notification Packages" for the API installation.
+
 Needs to always include "PwnedPasswordsDLL-API"
+
 Defaults to ['PwnedPasswordsDLL-API','rassfm','scecli']
+
 
 
 ## Limitations
