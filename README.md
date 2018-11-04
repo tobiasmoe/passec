@@ -1,14 +1,10 @@
 
-# passec
-
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
-
-The README template below provides a starting point with details about what information to include in your README.
+# Passec
 
 #### Table of Contents
 
 1. [Description](#description)
-2. [Setup - The basics of getting started with passec](#setup)
+2. [Setup (#setup)
     * [What passec affects](#what-passec-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with passec](#beginning-with-passec)
@@ -24,7 +20,7 @@ Pwned Passwords are about 500 million real world passwords that have been previo
 
 ## Setup
 
-### What passec affects **OPTIONAL**
+### What passec affects
  * Adds a value to following registry key "HKLM\System\CurrentControlSet\Control\LSA\Notification Packages"
  * Ensures that "Password must meet complexity requirements" is enabled on your domain
  * Installs the dll to your C:\windows\system32
@@ -32,7 +28,7 @@ Pwned Passwords are about 500 million real world passwords that have been previo
  
  Please be aware that the module overwrites the registry value for HKLM\System\CurrentControlSet\Control\LSA\Notification Packages. If you wan't to keep what you already have then you have to add it to the variable "registry_values_api" if you're using the API or "registry_values" if you want to download the database locally. 
  
-### Setup Requirements **OPTIONAL**
+### Setup Requirements
 
 This module is depends on the following modules
  * puppetlabs/powershell
@@ -40,6 +36,7 @@ This module is depends on the following modules
  * puppetlabs/registry
  * puppetlabs/reboot
  * puppetlabs/archive
+ * puppetlabs/stdlib
 
 ### Beginning with passec
 
