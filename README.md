@@ -4,7 +4,7 @@
 #### Table of Contents
 
 1. [Description](#description)
-2. [Setup (#setup)
+2. [Setup](#setup)
     * [What passec affects](#what-passec-affects)
     * [Setup requirements](#setup-requirements)
     * [Beginning with passec](#beginning-with-passec)
