@@ -3,6 +3,7 @@
 ---
 fixtures:
   forge_modules:
+    stdlib: "puppetlabs/stdlib"
     powershell: "puppetlabs/powershell"
     download_file: "puppet/download_file"
     registry: "puppetlabs/registry"

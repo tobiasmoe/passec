@@ -12,7 +12,7 @@ describe 'passec::install' do
         is_expected.to contain_exec('TLS-Fix-API').with(
           'command'  => '[Net.ServicePointManager]::SecurityProtocol = "tls12, tls11"',
           'provider' => 'powershell',
-	  'creates'  => "C:\\windows\\System32\\PwnedPasswordsDLL-API.dll",
+          'creates' => 'C:\\windows\\System32\\PwnedPasswordsDLL-API.dll',
         )
       }
       it {
@@ -22,6 +22,6 @@ describe 'passec::install' do
         )
       }
       it { is_expected.to contain_download_file('Download PwnedPasswordDLL-API').that_requires('Exec[TLS-Fix-API]') }
-      end
+    end
   end
 end
