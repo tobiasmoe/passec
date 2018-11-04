@@ -11,7 +11,7 @@ class passec::install {
       exec { 'TLS-Fix-API':
         command  => '[Net.ServicePointManager]::SecurityProtocol = "tls12, tls11"',
         provider => powershell,
-        onlyif   => '! Test-Path -Path C:\Windows\system32\PwnedPasswordsDLL-API.dll -PathType Leaf',
+        creates  =>  "C:\Windows\system32\PwnedPasswordsDLL-API.dll",
       }
       download_file { 'Download PwnedPasswordDLL-API':
         url                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL-API/releases/download/v1.0/PwnedPasswordsDLL-API.dll',
@@ -23,7 +23,7 @@ class passec::install {
       exec { 'TLS-Fix':
         command  => '[Net.ServicePointManager]::SecurityProtocol = "tls12, tls11"',
         provider => powershell,
-        onlyif   => '! Test-Path -Path C:\Windows\system32\PwnedPasswordsDLL.dll -PathType Leaf',
+        creates  => "C:\Windows\system32\PwnedPasswordsDLL.dll",
       }
       download_file { 'Download PwnedPasswordDLL':
         url                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL/releases/download/2.1/PwnedPasswordsDLL.dll',
