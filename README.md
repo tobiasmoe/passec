@@ -170,10 +170,3 @@ Defaults to ['PwnedPasswordsDLL-API','rassfm','scecli']
 * If you choose to add registry_values then you need to make sure that you're adding the "PwnedPasswordDLL" if you're using the local version, or "PwnedPasswordDLL-API" if you're using the API version.
 * This module only works on Windows
 
-## Development
-
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
