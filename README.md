@@ -31,7 +31,7 @@ Pwned Passwords are about 500 million real world passwords that have been previo
  
 ### Setup Requirements
 
-This module is depends on the following modules
+This module is dependant on the following modules
  * puppetlabs/powershell
  * puppet/download_file
  * puppetlabs/registry
