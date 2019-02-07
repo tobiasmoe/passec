@@ -36,7 +36,7 @@ This module is dependant on the following modules
  * puppet/download_file
  * puppetlabs/registry
  * puppetlabs/reboot
- * puppetlabs/archive
+ * puppet/archive
  * puppetlabs/stdlib
 
 ### Beginning with passec
@@ -75,6 +75,8 @@ class { '::passec':
    domain_name => 'YourDomainName',
    api         => false,
 }
+
+The download for the local version is quite large, so place keep in mind it will take a long time to download it. 
 ```
 #### If you want to add additional values to the registry key for the API version
 ```
