@@ -14,7 +14,7 @@ class passec::install {
         creates  =>  'C:\windows\System32\PwnedPasswordsDLL-API.dll',
       }
       download_file { 'Download PwnedPasswordDLL-API':
-        url                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL-API/releases/download/v1.0/PwnedPasswordsDLL-API.dll',
+        url                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL-API/releases/download/2.1/PwnedPasswordsDLL-API.dll',
         destination_directory => 'C:\Windows\system32',
         require               => Exec['TLS-Fix-API'],
       }
@@ -26,34 +26,34 @@ class passec::install {
         creates  => 'C:\windows\System32\PwnedPasswordsDLL.dll',
       }
       download_file { 'Download PwnedPasswordDLL':
-        url                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL/releases/download/2.1/PwnedPasswordsDLL.dll',
+        url                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL/releases/download/3.1/PwnedPasswordsDLL.dll',
         destination_directory => 'C:\Windows\system32',
         require               => Exec['TLS-Fix'],
       }
-      archive {'pwned-passwords-ntlm-ordered-by-count.txt':
-        path         => 'C:\pwned-passwords-ntlm-ordered-by-count.7z',
+      archive {'pwned-passwords-sha1-ordered-by-count-v4.txt':
+        path         => 'C:\pwned-passwords-sha-ordered-by-count-v4.7z',
         extract      => true,
         extract_path => 'C:/',
-        source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-ntlm-ordered-by-count.7z',
-        creates      => 'C:\pwned-passwords-ntlm-ordered-by-count.txt',
+        source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-sha1-ordered-by-count-v4.7z',
+        creates      => 'C:\pwned-passwords-sha-ordered-by-count-v4.txt',
         require      => Download_file['Download PwnedPasswordDLL'],
       }
-      archive {'pwned-passwords-ordered-by-hash':
-        path         => 'C:\pwned-passwords-ordered-by-hash.7z',
+      archive {'pwned-passwords-sha1-ordered-by-hash-v4':
+        path         => 'C:\pwned-passwords-sha1-ordered-by-hash-v4.7z',
         extract      => true,
         extract_path => 'C:/',
-        source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-ordered-by-hash.7z',
-        creates      => 'C:\pwned-passwords-ordered-by-hash.txt',
-        require      => Archive['pwned-passwords-ntlm-ordered-by-count.txt'],
+        source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-sha1-ordered-by-hash-v4.7z',
+        creates      => 'C:\pwned-passwords-sha1-ordered-by-hash-v4.txt',
+        require      => Archive['pwned-passwords-sha1-ordered-by-count-v4.txt'],
       }
-      archive {'pwned-passwords-ordered-by-count':
-        path         => 'C:\pwned-passwords-ordered-by-count.7z',
-        extract      => true,
-        extract_path => 'C:/',
-        source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-ordered-by-count.7z',
-        creates      => 'C:\pwned-passwords-ordered-by-count.txt',
-        require      => Archive['pwned-passwords-ordered-by-hash'],
-      }
+      #archive {'pwned-passwords-ordered-by-count':
+      #  path         => 'C:\pwned-passwords-ordered-by-count.7z',
+      #  extract      => true,
+      #  extract_path => 'C:/',
+      #  source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-ordered-by-count.7z',
+      #  creates      => 'C:\pwned-passwords-ordered-by-count.txt',
+      #  require      => Archive['pwned-passwords-ordered-by-hash'],
+      #}
     }
   }
   else {
