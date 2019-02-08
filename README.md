@@ -76,6 +76,8 @@ class { '::passec':
    api         => false,
 }
 
+You will need at least 60GB of space on your C drive if you want to install it locally.
+
 The download for the local version is quite large, so place keep in mind it will take a long time to download it. 
 ```
 #### If you want to add additional values to the registry key for the API version
