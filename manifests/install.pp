@@ -35,7 +35,7 @@ class passec::install {
         extract      => true,
         extract_path => 'C:/',
         source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-sha1-ordered-by-count-v4.7z',
-        creates      => 'C:\pwned-passwords-sha-ordered-by-count-v4.txt',
+        creates      => 'C:\pwned-passwords-sha1-ordered-by-count-v4.txt',
         require      => Download_file['Download PwnedPasswordDLL'],
       }
       archive {'pwned-passwords-sha1-ordered-by-hash-v4':
@@ -46,14 +46,6 @@ class passec::install {
         creates      => 'C:\pwned-passwords-sha1-ordered-by-hash-v4.txt',
         require      => Archive['pwned-passwords-sha1-ordered-by-count-v4.txt'],
       }
-      #archive {'pwned-passwords-ordered-by-count':
-      #  path         => 'C:\pwned-passwords-ordered-by-count.7z',
-      #  extract      => true,
-      #  extract_path => 'C:/',
-      #  source       => 'https://downloads.pwnedpasswords.com/passwords/pwned-passwords-ordered-by-count.7z',
-      #  creates      => 'C:\pwned-passwords-ordered-by-count.txt',
-      #  require      => Archive['pwned-passwords-ordered-by-hash'],
-      #}
     }
   }
   else {
