@@ -174,3 +174,14 @@ Defaults to ['PwnedPasswordsDLL-API','rassfm','scecli']
 * If you choose to add registry_values then you need to make sure that you're adding the "PwnedPasswordDLL" if you're using the local version, or "PwnedPasswordDLL-API" if you're using the API version.
 * This module only works on Windows
 
+
+## If you want to contribute
+
+You are very welcome to clone the repo to make improvements on your own, just make sure to link back to this repo.
+
+You can also fork the repo and push code to it, then make a pull request to create new functionalites or fix issues. All code needs to follow the puppet style guide and make sure the added code passes the tests.
+
+## Whats next?
+
+* A functinality I would add is to have a customized message that tells you the password you are trying to set is a breached password from the haveibeenpwned website.
+* Create more tests! 
