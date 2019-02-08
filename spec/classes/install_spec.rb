@@ -17,7 +17,7 @@ describe 'passec::install' do
       }
       it {
         is_expected.to contain_download_file('Download PwnedPasswordDLL-API').with(
-          'url'                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL-API/releases/download/v1.0/PwnedPasswordsDLL-API.dll',
+          'url'                   => 'https://github.com/JacksonVD/PwnedPasswordsDLL-API/releases/download/2.1/PwnedPasswordsDLL-API.dll',
           'destination_directory' => 'C:\Windows\system32',
         )
       }
